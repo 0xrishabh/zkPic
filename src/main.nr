@@ -23,7 +23,7 @@ fn crop(
 	let orig_image_length = orig_image.len();
 	let mut new_index = 0;
 	let row_end = x+new_image_width;
-	let col_end = y+new_image_width;
+	let col_end = y+new_image_height;
 	for index in 0..orig_image_length{
 		let row_i = (index as u8) / orig_image_width;
 		let col_i = remainder((index as u8), orig_image_height);
