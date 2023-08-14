@@ -3,33 +3,32 @@ fn remainder(x: u8, y: u8) -> u8 {x - y * (x / y)}
 // It verifies that the new_image is a crop of the orig_image
 // @param orig_image: the original image
 // @param new_image: the new image
-// @param rl: the lenght of th row in the original image
-// @param x: the x coordinate of the top left corner of the crop
-// @param y: the y coordinate of the top left corner of the crop
-// @param w: the width of the crop
-// @param h: the height of the crop
+// @param orig_image_width: the width of the original image
+// @param orig_image_height: the height of the original image
+// @param x: the x coordinate of the top left corner of the new image
+// @param y: the y coordinate of the top left corner of the new imagep
+// @param orig_image_width: the width of the new image
+// @param new_image_height: the height of the new image
 
 fn crop(
 	orig_image: [(Field,Field,Field)], 
 	new_image: [(Field,Field,Field)],
-	row_length: u8, 
-	col_length: u8,
-	col_start: u8, 
-	row_start: u8, 
-	width_new: u8, 
-	height_new: u8
+	orig_image_width: u8, 
+	orig_image_height: u8,
+	x: u8, 
+	y: u8, 
+	new_image_width: u8, 
+	new_image_height: u8
 ) {
 	let orig_image_length = orig_image.len();
 	let mut new_index = 0;
+	let row_end = x+new_image_width;
+	let col_end = y+new_image_width;
 	for index in 0..orig_image_length{
-		let row_i = (index as u8) / row_length;
-		let col_i = remainder((index as u8), col_length);
-		let row_end = row_start+width_new;
-		let col_end = col_start+height_new;
-		if row_i >= row_start & row_i <= row_end {
-			if col_i >= col_start & col_i <= col_end {
-				std::println(row_i);
-				std::println(col_i);
+		let row_i = (index as u8) / orig_image_width;
+		let col_i = remainder((index as u8), orig_image_height);
+		if row_i >= x & row_i < row_end {
+			if col_i >= y & col_i < col_end {
 				assert(orig_image[index].0 == new_image[new_index].0);
 				assert(orig_image[index].1 == new_image[new_index].1);
 				assert(orig_image[index].2 == new_image[new_index].2);
@@ -42,59 +41,37 @@ fn crop(
 
 #[test]
 fn test_crop_pass() {
+	// Representing a image of 4x4 pixels
 	let orig_image = [
 		(1, 2, 3), (1, 2, 3), (1, 2, 3), (1, 2, 3), 
 		(1, 2, 3), (3, 2, 1), (3, 2, 1), (1, 2, 3), 
 		(1, 2, 3), (3, 2, 1), (3, 2, 1), (1, 2, 3), 
 		(1, 2, 3), (1, 2, 3), (1, 2, 3), (1, 2, 3)
-	]; 
+	];
+	// Representing a image of 2x2 pixels
 	let new_image = [
 		(3, 2, 1), (3, 2, 1),
 		(3, 2, 1), (3, 2, 1)
 	];
-	let row_length = 4; 
-	let col_length = 4;
-	let col_start = 1;
-	let row_start = 1; 
-	let width_new = 1; 
-	let height_new = 1;
+
+	let orig_image_width = 4; 
+	let orig_image_height = 4;
+	let new_image_width = 2; 
+	let new_image_height = 2;
+
+	// Starting coordinates of the crop image
+	let x = 1;
+	let y = 1; 
+	
+	// should fail if the crop is not correct
     crop(
 		orig_image,
 		new_image,
-		row_length,
-		col_length,
-		col_start,
-		row_start,
-		width_new,
-		height_new
-	);   
-}
-#[test]
-fn test_crop_fail() {
-	let orig_image = [
-		(1, 2, 3), (1, 2, 3), (1, 2, 3), (1, 2, 3), 
-		(1, 2, 3), (3, 2, 1), (3, 2, 1), (1, 2, 3), 
-		(1, 2, 3), (3, 2, 1), (3, 2, 1), (1, 2, 3), 
-		(1, 2, 3), (1, 2, 3), (1, 2, 3), (1, 2, 3)
-	]; 
-	let new_image = [
-		(3, 2, 1), (3, 2, 1),
-		(3, 2, 1), (3, 2, 4)
-	];
-	let row_length = 4; 
-	let col_length = 4;
-	let col_start = 1;
-	let row_start = 1; 
-	let width_new = 1; 
-	let height_new = 1;
-    crop(
-		orig_image,
-		new_image,
-		row_length,
-		col_length,
-		col_start,
-		row_start,
-		width_new,
-		height_new
+		orig_image_width,
+		orig_image_height,
+		x,
+		y,
+		new_image_width,
+		new_image_height
 	);   
 }

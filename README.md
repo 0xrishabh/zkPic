@@ -17,3 +17,8 @@ Metric: A successful conversion will require all circom's abilities to be presen
 | Control Flow  |  ✅    |  ✅  | 
 | Dynamic Loops |  ✅    |  ❌  |
 
+
+# TEST
+
+nargo test --show-output --experimental-ssa
+
