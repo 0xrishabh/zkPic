@@ -23,7 +23,7 @@
                     const pixelData = imageData.data; 
                     const pixelArray = [];
                     for (let i = 0; i < pixelData.length; i += 4) {
-                        const pixel = [pixelData[i], pixelData[i + 1], pixelData[i + 2], pixelData[i + 3]];
+                        const pixel = [pixelData[i], pixelData[i + 1], pixelData[i + 2]];
                         pixelArray.push(pixel);
                     }
                     console.log(pixelArray); // Output the pixel array to the console
