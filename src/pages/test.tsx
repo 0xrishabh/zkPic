@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { mainFunc } from '../ts';
 
-export default function Test() {
-  type InputType = {
-    firstInput: number;
-    secondInput: number;
-  };
+type InputType = {
+  firstInput: number;
+  secondInput: number;
+};
 
-  
+export default function Test() {
   const [inputData, setInputData] = useState<InputType>({
     firstInput: 0,
     secondInput: 0,
