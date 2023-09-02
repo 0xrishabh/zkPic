@@ -22,3 +22,9 @@ Metric: A successful conversion will require all circom's abilities to be presen
 
 nargo test --show-output --experimental-ssa
 
+
+# Design Choice:
+
+* Can't Have nested array for image in main function, as noir does not support nested arrays
+* Can't Have array of tuple for image, as noir have not implemented the abi for it
+* Can't Have variable length array, as noir does not support that as parameter to main function 
