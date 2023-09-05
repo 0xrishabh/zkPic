@@ -10,17 +10,17 @@ import circuit from "../../circuits/target/ZKpic.json";
 
 export async function grayScale(inputData: any) {
   console.log("inputData", inputData);
+  
   const acirBuffer = Buffer.from(circuit.bytecode, "base64");
   const acirBufferUncompressed = decompressSync(acirBuffer);
 
   await initACVM();
   const api = await newBarretenbergApiAsync(4);
-  // console.log("api", api);
-  // const data = await api.acirGetCircuitSizes(
-  //   acirBufferUncompressed
-  // );
+  const data = await api.acirGetCircuitSizes(
+    acirBufferUncompressed
+  );
   
-  // console.log("exact, total, subgroup]", data);
+  console.log("===============", data);
   
   // const subgroupSize = Math.pow(2, Math.ceil(Math.log2(12)));
   // const crs = await Crs.new(subgroupSize + 1);
@@ -59,7 +59,7 @@ export async function grayScale(inputData: any) {
       2,
       ethers.utils.hexZeroPad(`0x${inputY}`, 32)
     );
-    //  initialWitness.set(3, ethers.utils.hexZeroPad(`0x${input.z.toString(16)}`, 32));
+    // initialWitness.set(3, ethers.utils.hexZeroPad(`0x${input.z.toString(16)}`, 32));
 
     const witnessMap = await executeCircuit(acirBuffer, initialWitness, () => {
       throw Error("unexpected oracle");
@@ -90,8 +90,6 @@ export async function grayScale(inputData: any) {
 
   const input = { x: [0, 1, 2], y: [2, 5, 6] };
   const witness = await generateWitness(input, acirBuffer);
-  console.log("witness", witness);
-  
   console.log("Witness generated!");
   // const proof = await generateProof(witness);
   // console.log("Proof generated!");
