@@ -43,18 +43,6 @@ fn resize<N>(
                     + orig_image[y_h * orig_height + x_l] * yRatioWeight * (new_width - 1 - xRatioWeight)
                     + orig_image[y_h * orig_height + x_h] * xRatioWeight * yRatioWeight;
 
-            
-
-            // std::println("------------------");
-            // std::println(new_image[ind]);
-            // std::println(sum / denom);
-            // // std::println(sum - (new_image[ind] * denom));
-            // std::println(new_image[ind]  == sum / denom);
-            // // std::println(y_l * orig_height + x_l);
-            // // std::println(y_l * orig_height + x_h);
-            // // std::println(y_h * orig_height + x_l);
-            // // std::println(y_h * orig_height + x_h);
-            // // std::println("------------------");
             assert(new_image[ind] == sum / denom);
         }       
     }
@@ -103,34 +91,18 @@ fn test_gray_pass(){
     new_image[15] = 122;
 
 
-    // let mut new_image = [0; DEPTH];
-    // new_image[0] = 122;
-    // new_image[1] = 132;
-    // new_image[2] = 154;
-    // new_image[3] = 165;
-
-    // new_image[4] = 132;
-    // new_image[5] = 138;
-    // new_image[6] = 148;
-    // new_image[7] = 154;
-
-    // new_image[8] = 154;
-    // new_image[9] = 148;
-    // new_image[10] = 138;
-    // new_image[11] = 132;
-
-    // new_image[12] = 165;
-    // new_image[13] = 154;
-    // new_image[14] = 132;
-    // new_image[15] = 122;
-
+    let orig_len = 4;
+    let orig_width = 2;
+    let new_length = 16;
+    let new_width = 4;
+    
 	main(
-		orig_image,
-		new_image,
-        4, // orig_length
-        2, // orig_width
-        16, // new_length
-        4 // new_width
+	    orig_image,
+	    new_image,
+        orig_len, 
+        orig_width, 
+        new_length,
+        new_width
 	);
     std::println("Test passed!")
 }
