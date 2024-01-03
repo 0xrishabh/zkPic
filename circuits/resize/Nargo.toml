@@ -1,0 +1,6 @@
+[package]
+name = "resize"
+type = "bin"
+authors = [""]
+
+[dependencies]
