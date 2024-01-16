@@ -4,12 +4,12 @@ import { grayScale } from "../utils/grayScale";
 export default function Test() {
   const canvasRef = useRef(null);
   const [imageData, setImageData] = useState<any>({
-    firstImage: [],
-    secondImage: [],
+    RGBImage: [],
+    GrayImage: [],
   });
   const [file, setFile] = useState<any>({
-    firstImage: "",
-    secondImage: "",
+    RGBImage: "",
+    GrayImage: "",
   });
 
   const runMain = () => {
@@ -32,10 +32,50 @@ export default function Test() {
         ctx.drawImage(img, 0, 0, img.width, img.height);
         const imageData = ctx.getImageData(0, 0, img.width, img.height);
         const pixelData = imageData.data;
-        const pixelArray: any = [];
+        const pixelArray: any = new Array(4000);
+        let index = 0;
         for (let i = 0; i < pixelData.length; i += 4) {
+          console.log(pixelData[i], pixelData[i + 1], pixelData[i + 2])
           const pixel = [pixelData[i], pixelData[i + 1], pixelData[i + 2]];
-          pixelArray.push(pixel);
+          pixelArray[index++] = pixel;
+        }
+        // Fill the array with Empyt value to make the length fullfilment
+        for (index; index < pixelArray.length; index++) {
+          pixelArray[index] = [0, 0, 0];
+        }
+        setImageData((prevData: any) => ({
+          ...prevData,
+          [event.target.id]: pixelArray,
+        }));
+      };
+      img.src = URL.createObjectURL(file);
+    }
+  };
+  const handleGrayImageUpload = (event: any) => {
+    const file = event.target.files[0];
+    setFile((prevData: any) => ({
+      ...prevData,
+      [event.target.id]: URL.createObjectURL(file),
+    }));
+    if (file) {
+      const img = new Image();
+      img.onload = () => {
+        const canvas: any = canvasRef.current;
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        const imageData = ctx.getImageData(0, 0, img.width, img.height);
+        const pixelData = imageData.data;
+        const pixelArray: any = new Array(4000);
+        let index = 0;
+        for (let i = 0; i < pixelData.length; i += 4) {
+          console.log(pixelData[i])
+          const pixel = pixelData[i];
+          pixelArray[index++] = pixel;
+        }
+        for (index; index < pixelArray.length; index++) {
+          pixelArray[index] = 0;
         }
         setImageData((prevData: any) => ({
           ...prevData,
@@ -58,37 +98,34 @@ export default function Test() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-black"
             >
-              Upload first image
+              Upload RGB image
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-black px-6 py-4">
               <div className="text-center">
                 <div className="mt-4 flex text-sm justify-center leading-6 text-gray-900">
                   <label
-                    htmlFor="firstImage"
+                    htmlFor="RGBImage"
                     className="relative cursor-pointer rounded-md bg-gray-900 font-semibold px-2 text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 hover:text-indigo-500"
                   >
                     <span>
-                      {imageData.firstImage.length
+                      {imageData.RGBImage.length
                         ? "Uploded Sucessfully"
                         : "Upload a file"}
                     </span>
                     <input
-                      id="firstImage"
-                      name="firstImage"
+                      id="RGBImage"
+                      name="RGBImage"
                       type="file"
                       className="sr-only"
                       onChange={handleImageUpload}
                     />
                   </label>
                 </div>
-                <p className="text-xs leading-5 text-gray-400">
-                  PNG, JPG, GIF up to 10MB
-                </p>
               </div>
             </div>
           </div>
-          {file.firstImage && (
-            <img src={file.firstImage} className="!w-[300px] !h-[200px]" />
+          {file.RGBImage && (
+            <img src={file.RGBImage} className="!w-[300px] !h-[200px]" />
           )}
           <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
         </div>
@@ -98,37 +135,34 @@ export default function Test() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-black"
             >
-              Upload second image
+              Upload Gray image
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-black px-6 py-4">
               <div className="text-center">
                 <div className="mt-4 flex justify-center text-sm leading-6 text-gray-900">
                   <label
-                    htmlFor="secondImage"
+                    htmlFor="GrayImage"
                     className="relative cursor-pointer rounded-md bg-gray-900 font-semibold px-2 text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 hover:text-indigo-500"
                   >
                     <span>
-                      {imageData.secondImage.length
+                      {imageData.GrayImage.length
                         ? "Uploded Sucessfully"
                         : "Upload a file"}
                     </span>
                     <input
-                      id="secondImage"
-                      name="secondImage"
+                      id="GrayImage"
+                      name="grayImage"
                       type="file"
                       className="sr-only"
-                      onChange={handleImageUpload}
+                      onChange={handleGrayImageUpload}
                     />
                   </label>
                 </div>
-                <p className="text-xs leading-5 text-gray-400">
-                  PNG, JPG, GIF up to 10MB
-                </p>
               </div>
             </div>
           </div>
-          {file.secondImage && (
-            <img src={file.secondImage} className="!w-[300px] !h-[200px]" />
+          {file.GrayImage && (
+            <img src={file.GrayImage} className="!w-[300px] !h-[200px]" />
           )}
           <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
         </div>

@@ -11,8 +11,10 @@
   "dependencies": {
     "@aztec/bb.js": "^0.3.6",
     "@noir-lang/acvm_js": "github:noir-lang/acvm-simulator-wasm",
-    "@types/react": "18.2.18",
+    "@noir-lang/backend_barretenberg": "^0.19.4",
+    "@noir-lang/noir_js": "^0.19.4",
     "@types/node": "20.4.5",
+    "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "ethers": "^5.7.2",
     "fflate": "^0.8.0",

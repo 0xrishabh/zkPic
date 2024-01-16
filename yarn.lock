@@ -7,6 +7,16 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@aztec/bb.js@0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@aztec/bb.js/-/bb.js-0.16.0.tgz#b99632ee378f4154111a865195ea88817f5e79d3"
+  integrity sha512-RWx0Oiml+bgOA+cqdh+/jynLIUOFHKFsPpk7L9gWz8Di0UZg9AoTSSOG+pR3il5EGWA4cJp5Wp3ikOSq62gC7g==
+  dependencies:
+    comlink "^4.4.1"
+    commander "^10.0.1"
+    debug "^4.3.4"
+    tslib "^2.4.0"
+
 "@aztec/bb.js@^0.3.6":
   version "0.3.6"
   resolved "https://registry.npmjs.org/@aztec/bb.js/-/bb.js-0.3.6.tgz"
@@ -462,9 +472,44 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@noir-lang/acvm_js@0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@noir-lang/acvm_js/-/acvm_js-0.35.0.tgz#81130d0236c259b2fb47b0d8efc577bbb5ee18f9"
+  integrity sha512-LiQUSF3P4/1VGfMZc0hSivLs4oiPsRt+ADFBMF7sOg4oaImeQ4L6tu0Og2Wh1Pc0k2y1EXdv1EKxN2N1WRDdKg==
+
 "@noir-lang/acvm_js@github:noir-lang/acvm-simulator-wasm":
   version "0.0.0-d576736"
   resolved "https://codeload.github.com/noir-lang/acvm-simulator-wasm/tar.gz/b9d9ca9dfc5140839f23998d9466307215607c42"
+
+"@noir-lang/backend_barretenberg@^0.19.4":
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/@noir-lang/backend_barretenberg/-/backend_barretenberg-0.19.4.tgz#77deb7fc365466437b3ddd7fc97a74f01870f1dd"
+  integrity sha512-gk8uyx3qJAXp7hNgzBpAyyoK5BV/8zoB+kQqVStuue6D9ByMTxvqL3juJ0Ivm+NYN/IqBIIkuFNTgiaD/2gHsA==
+  dependencies:
+    "@aztec/bb.js" "0.16.0"
+    "@noir-lang/types" "0.19.4"
+    fflate "^0.8.0"
+
+"@noir-lang/noir_js@^0.19.4":
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/@noir-lang/noir_js/-/noir_js-0.19.4.tgz#e71fc27e28a17cd03b21e498aaaf0f901b2bb75e"
+  integrity sha512-V/3jLoor3dMuYuv0ad154M0Ko1xZWxx0qoRDLC/Y/xMH5Wbe5yH4yOvBjCXzQ0dLG5JX1IWGOCC7xxzpStk+hA==
+  dependencies:
+    "@noir-lang/acvm_js" "0.35.0"
+    "@noir-lang/noirc_abi" "0.19.4"
+    "@noir-lang/types" "0.19.4"
+
+"@noir-lang/noirc_abi@0.19.4":
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/@noir-lang/noirc_abi/-/noirc_abi-0.19.4.tgz#a51e76efabf70d49de92ca0a114ef5721ab857a4"
+  integrity sha512-g3fa3rVGyvnqu1BQdXytCPzIFQDvK1kH9uMjNrEz5UG/LKl+EPvIl1Te8FcOsSi5/eVSbMWveyz3HJu+SwMjDQ==
+
+"@noir-lang/types@0.19.4":
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/@noir-lang/types/-/types-0.19.4.tgz#bef8fc4d4023b78cfb77c66272418a1c5ea55327"
+  integrity sha512-NInyF1IQ1qNidhqyu1dxIYMatehnLI7eZz+9DaWH9t8TDA1RjIiUZ3wF2j/ukeTrk3RrhS+wj4t2cCVwv/aEiA==
+  dependencies:
+    "@noir-lang/noirc_abi" "0.19.4"
 
 "@swc/helpers@0.5.1":
   version "0.5.1"
