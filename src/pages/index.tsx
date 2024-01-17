@@ -17,9 +17,14 @@ export default function Home() {
               Grayscale
             </p>
           </Link>
-          <Link href="/test">
+          <Link href="/crop">
             <p className="border-2 border-black px-4 py-2 rounded-xl cursor-pointer">
-              Test Case
+              Crop
+            </p>
+          </Link>
+          <Link href="/resize">
+            <p className="border-2 border-black px-4 py-2 rounded-xl cursor-pointer">
+              Resize
             </p>
           </Link>
         </div>
