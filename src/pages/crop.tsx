@@ -109,7 +109,7 @@ export default function Test() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-black"
             >
-              Upload RGB image
+              Upload Original image
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-black px-6 py-4">
               <div className="text-center">
@@ -146,7 +146,7 @@ export default function Test() {
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-black"
             >
-              Upload Gray image
+              Upload New image
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-black px-6 py-4">
               <div className="text-center">
