@@ -55,12 +55,12 @@ fn resize<N>(
 fn main(
     orig_image: [u32; DEPTH],
     new_image: [u32; DEPTH],
-    orig_len: u32,
+    orig_length: u32,
     orig_width: u32,
     new_length: u32,
     new_width: u32
 ) {
-    resize(orig_image, new_image, orig_len, orig_width, new_length, new_width);
+    resize(orig_image, new_image, orig_length, orig_width, new_length, new_width);
 }
 
 #[test]
